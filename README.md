@@ -66,3 +66,7 @@ FormatConversionWWL/
 python -X utf8 tests/test_core.py
 ```
 覆盖：GIF 帧数/时长/循环一致、透明保真、可见像素色差阈值、注册表完整性。
+
+## 许可证
+
+[MIT](LICENSE)
