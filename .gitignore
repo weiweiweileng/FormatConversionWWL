@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 运行时产生的目录（用户上传副本 / 转换输出 / 日志）
+uploads/
+output/
+logs/
+
+# 测试与调试产物
+tests/fixtures/
+server_test.log
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

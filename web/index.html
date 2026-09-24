@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>格式转换工坊</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M10 13l6-6 6 6M22 19l-6 6-6-6' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#4f46e5"/><path d="M10 13l6-6 6 6M22 19l-6 6-6-6" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div>
+      <h1>格式转换工坊</h1>
+      <p class="sub">本地运行 · 文件不出电脑</p>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="card">
+    <h2 class="step-title"><span class="step-num">1</span>选择目标格式</h2>
+    <div id="formatGroup" class="format-group"></div>
+  </section>
+
+  <section class="card">
+    <h2 class="step-title"><span class="step-num">2</span>添加文件</h2>
+    <div id="dropzone" class="dropzone">
+      <svg class="dz-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l12 12h-8v14h-8V18h-8L24 6z" fill="#c3c8ea"/><path d="M8 38h32v4H8z" fill="#dcdff5"/></svg>
+      <p class="dz-main">拖拽文件或整个文件夹到此处</p>
+      <p class="dz-sub" id="dzSub">也支持下面两种方式</p>
+      <div class="dz-actions">
+        <button id="btnPick" class="primary-btn sm" type="button">选择文件</button>
+        <button id="btnPath" class="ghost-btn sm" type="button">添加本地文件夹…</button>
+      </div>
+      <input type="file" id="fileInput" multiple hidden>
+    </div>
+    <div id="pathRow" class="path-row" hidden>
+      <input id="pathInput" type="text" placeholder="输入电脑上的文件夹或文件路径，如 E:\图片\表情包">
+      <button id="btnPathGo" class="primary-btn sm" type="button">添加</button>
+    </div>
+  </section>
+
+  <section class="card" id="listCard" hidden>
+    <div class="list-head">
+      <h2 class="step-title"><span class="step-num">3</span>文件列表<span class="count" id="listCount"></span></h2>
+      <button id="btnOpenOut" class="link-btn" type="button" hidden>打开输出文件夹</button>
+    </div>
+    <div id="progressWrap" hidden>
+      <div class="progress"><div id="progressBar"></div></div>
+      <p class="progress-text" id="progressText"></p>
+    </div>
+    <div id="banner" class="banner" hidden></div>
+    <ul id="fileList"></ul>
+  </section>
+
+  <section class="card" id="outCard" hidden>
+    <h2 class="step-title"><span class="step-num">4</span>输出位置</h2>
+    <label class="radio-row">
+      <input type="radio" name="outmode" value="beside" checked>
+      <span>输出到项目根目录的 <code>output</code> 文件夹（自动新建，不动原文件）</span>
+    </label>
+    <label class="radio-row">
+      <input type="radio" name="outmode" value="custom">
+      <span>统一保存到指定目录</span>
+    </label>
+    <div class="out-dir-row">
+      <input id="outDir" type="text" placeholder="例如 E:\转换结果" disabled>
+      <button id="btnBrowse" class="ghost-btn sm" type="button" disabled>浏览…</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>所有转换均在本机完成，文件不会上传到任何服务器。<br>
+  GIF 受格式限制为每帧 256 色，已采用逐帧自适应调色板 + 抖动（视觉无损），动图帧、时长与循环完整保留。<br>
+  关闭所有打开的本工具页面后，后台服务会自动退出。</p>
+</footer>
+
+<div class="action-bar" id="actionBar" hidden>
+  <div class="ab-info">
+    <b id="abCount">0 个文件</b>
+    <span id="abSize"></span>
+  </div>
+  <div class="ab-actions">
+    <button id="btnClear" class="ghost-btn" type="button">清空列表</button>
+    <button id="btnConvert" class="primary-btn lg" type="button">开始转换</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
